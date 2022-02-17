@@ -1,0 +1,50 @@
+
+--------------------------------------
+--------------------------------------
+---------- EXTRA CONTROLLER ----------
+--------------------------------------
+--------------------------------------
+--
+-- local vehicleHasLights = false
+--
+-- RegisterNetEvent('setupLightsHUD')
+-- AddEventHandler('setupLightsHUD', function()
+--
+--   if clockedIn then
+--     local ped = PlayerPedId()
+--     local vehicle = GetVehiclePedIsIn(ped)
+--     local model = GetEntityModel(vehicle)
+--     local hash = GetHashKey(model)
+--     local class = GetVehicleClass(vehicle)
+--
+--     print(hash)
+--     if class == 18 then
+--       for k, v in pairs(vehicles) do
+--         if hash == v.vehicle then
+--           print("Vehicle found")
+--           vehicleHasLights = true
+--
+--
+--         end
+--       end
+--     end
+--   end
+-- end)
+--
+-- RegisterNetEvent('cleanupLightsHUD')
+-- AddEventHandler('cleanupLightsHUD', function()
+-- end)
+--
+-- ----------------------------
+-- ----------------------------
+-- ---------- Thread ----------
+-- ----------------------------
+-- ----------------------------
+--
+-- CreateThread(function()
+--   while true do
+--     if vehicleHasLights then
+--
+--     end
+--   end
+-- end)

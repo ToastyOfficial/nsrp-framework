@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="inventory.css">
+    <title></title>
+  </head>
+  <body>
+    <div class="inventory-container" id="inventory">
+      <div class="inventory">
+
+        <div class="header">
+          <div class="header-left">
+            <h1>Inventory</h1>
+            <p id="name_text">Player Name</p>
+          </div>
+          <div class="header-right">
+            <p id="capacity">Capacity: 0/200</p>
+          </div>
+        </div>
+        <div class="items">
+          <div class="item" id="firearms">
+            <div class="item-top">
+              <div class="icon" id="firearms_icon"><img src="imgs/gun.png" alt=""></div>
+              <p class="count" id="firearms_count">0</p>
+            </div>
+            <div class="item-bottom">
+              <p>Firearms</p>
+            </div>
+          </div>
+          <div class="item" id="weapons">
+            <div class="item-top">
+              <div class="icon" id="weapons_icon"><img src="imgs/knife.png" alt=""></div>
+              <p class="count" id="weapons_count">0</p>
+            </div>
+            <div class="item-bottom">
+              <p>Weapons</p>
+            </div>
+          </div>
+          <div class="item" id="weed">
+            <div class="item-top">
+              <div class="icon" id="weed_icon"><img src="imgs/marijuana.png" alt=""></div>
+              <p class="count" id="weed_count">0</p>
+            </div>
+            <div class="item-bottom">
+              <p>Weed</p>
+            </div>
+          </div>
+          <div class="item" id="weed2">
+            <div class="item-top">
+              <div class="icon" id="weed2_icon"><img src="imgs/marijuana.png" alt=""></div>
+              <p class="count" id="weed2_count">0</p>
+            </div>
+            <div class="item-bottom">
+              <p>Purchased Weed</p>
+            </div>
+          </div>
+          <div class="item" id="meth">
+            <div class="item-top">
+              <div class="icon" id="meth_icon"><img src="imgs/meth.png" alt=""></div>
+              <p class="count" id="meth_count">0</p>
+            </div>
+            <div class="item-bottom">
+              <p>Meth</p>
+            </div>
+          </div>
+          <div class="item" id="meth2">
+            <div class="item-top">
+              <div class="icon" id="meth2_icon"><img src="imgs/meth.png" alt=""></div>
+              <p class="count" id="meth2_count">0</p>
+            </div>
+            <div class="item-bottom">
+              <p>Purchased Meth</p>
+            </div>
+          </div>
+          <div class="item" id="moneybags">
+            <div class="item-top">
+              <div class="icon" id="moneybags_icon"><img src="imgs/money-bag.png" alt=""></div>
+              <p class="count" id="moneybags_count">0</p>
+            </div>
+            <div class="item-bottom">
+              <p>Bags of Money</p>
+            </div>
+          </div>
+          <div class="item" id="other">
+            <div class="item-top">
+              <div class="icon">s</div>
+              <p class="count">0</p>
+            </div>
+            <div class="item-bottom">
+              <p>Item Name</p>
+            </div>
+          </div>
+          <div class="item" id="other2">
+            <div class="item-top">
+              <div class="icon"></div>
+              <p class="count">0</p>
+            </div>
+            <div class="item-bottom">
+              <p>Item Name</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="nui:/ui/inventory.js" async></script>
+</html>

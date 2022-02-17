@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+:root {
+  /* Home page "carousel" area height*/
+  --carousel-height: 400px;
+
+  /* Content Margin from left and right */
+  --content-margin: 20vw;
+
+  /* Server Header Background Image Height */
+  --server-img-height: 600px;
+  /* Colors */
+  --col-1: #5F70B9;
+  --bg-col-1: #232429;
+  --bg-col-2: #3b3c45;
+  --col-3: #2f3037;
+  --footer-col: #17181c;
+
+  /* Global Border Radius */
+  /* For nested rounded corners reduce by 2 ie. next would be 5px; */
+  --border-radius: 7px;
+  --border-radius2: 5px;
+
+  /* Default Margins */
+  --default-margin: 20px;
+}
+
+body {
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  bottom: 2vh;
+  margin: 0;
+  text-align: center;
+  font-family: "Open Sans", sans-serif;
+}
+
+#lights_hud {
+  display: inline-block;
+  text-align: center;
+
+  background: var(--bg-col-2);
+  border-radius: var(--border-radius);
+
+  padding: 5px;
+
+  opacity: 0%;
+
+  transition: all .5s ease;
+}
+
+#indicator {
+  display: inline-block;
+  min-width: 23px;
+  height: 23px;
+  margin-right: 3px;
+  background: var(--bg-col-1);
+  border-radius: 50%;
+}
+
+.button {
+  display: inline-block;
+  min-width: 80px;
+  height: 25px;
+
+  background: var(--bg-col-1);
+  border-radius: var(--border-radius2);
+
+  color: #787878;
+  font-weight: 600;
+  text-align: center;
+  line-height: 25px;
+}
+
+[data-on="true"] {
+  background-color: var(--col-1) !important;
+  color: white;
+}
+
+.helpers {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  color: white;
+  opacity: 50%;
+}
+
+.helper {
+  display: none;
+  margin-left: 15px;
+  margin-right: 15px;
+}

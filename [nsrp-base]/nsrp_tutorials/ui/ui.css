@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+.container_large {
+  background-color: grey;
+
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  bottom: 50px;
+  left: 50px;
+}
+
+.container_small {
+  background-color: grey;
+
+  position: absolute;
+  right: 0;
+
+  height: 100%;
+  width: 30vw;
+  box-sizing: border-box;
+}

@@ -1,0 +1,24 @@
+:root {
+  /* Home page "carousel" area height*/
+  --carousel-height: 400px;
+
+  /* Content Margin from left and right */
+  --content-margin: 20vw;
+
+  /* Server Header Background Image Height */
+  --server-img-height: 600px;
+  /* Colors */
+  --col-1: #5F70B9;
+  --bg-col-1: #232429;
+  --bg-col-2: #3b3c45;
+  --col-3: #2f3037;
+  --footer-col: #17181c;
+
+  /* Global Border Radius */
+  /* For nested rounded corners reduce by 2 ie. next would be 5px; */
+  --border-radius: 7px;
+  --border-radius2: 5px;
+
+  /* Default Margins */
+  --default-margin: 20px;
+}
