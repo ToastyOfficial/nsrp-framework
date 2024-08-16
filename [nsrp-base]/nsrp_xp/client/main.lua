@@ -31,15 +31,13 @@ AddEventHandler('xp:getMyInfo', function(oldRank, xp, rank)
   myXP = xp
   myRank = rank
 
-  if config.debug = true then
-   print('My Last Level = ' .. myLastRank)
-  --end
-
   print('My XP = ' .. myXP)
   print('My Level = ' .. myRank)
 
   getRanksXP()
-
+if config.debug = true then
+   print('My Last Level = ' .. myLastRank)
+  end
 end)
 
 RegisterNetEvent('levelUpdate')
