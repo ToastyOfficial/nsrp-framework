@@ -30,7 +30,11 @@ AddEventHandler('xp:getMyInfo', function(oldRank, xp, rank)
   myLastRank = oldRank
   myXP = xp
   myRank = rank
-  --print('My Last Level = ' .. myLastRank)
+
+  if config.debug = true then
+   print('My Last Level = ' .. myLastRank)
+  --end
+
   print('My XP = ' .. myXP)
   print('My Level = ' .. myRank)
 
