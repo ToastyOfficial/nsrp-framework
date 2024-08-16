@@ -1,4 +1,5 @@
 Config = {}
+config.debug = false
 
 --
 Config.Ranks = {
