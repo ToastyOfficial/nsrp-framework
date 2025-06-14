@@ -154,7 +154,9 @@ CreateThread( function()
       timer = timerDef
     else
       timer = timer - 1
-      --print(timer)
+      if config.debug = true then
+	print(timer)
+      end
     end
   end
 end)
@@ -177,22 +179,31 @@ function getRanksXP()
   print('[getRanksXP] XP needed for level ' .. index .. ': ' ..myNextRank_XP)
 
   myRank_XP = Config.Ranks[myRank]
-  --print('[getRanksXP] Current rank XP: ' .. myRank_XP)
+      if config.debug = true then
+  print('[getRanksXP] Current rank XP: ' .. myRank_XP)
+  end
 end
 
 RegisterNetEvent('c:updateBar')
 AddEventHandler('c:updateBar', function(direction, didLevelUp)
-  --print('event triggered')
-
+if config.debug = true then 
+	print('event triggered')
+end
   local neededXP = myNextRank_XP - myRank_XP -- how much XP is needed for next leve
-  --print('[update_XP_bar] XP needed for next rank: ' .. neededXP)
-
+	if config.debug = true then
+           print('[update_XP_bar] XP needed for next rank: ' .. neededXP)
+	end
+		
   local XP_inLevel = myXP - myRank_XP -- how much XP has player gained in current level
-  --print('[update_XP_bar] XP gained in current level: ' .. XP_inLevel)
-
+	if config.debug = true then
+           print('[update_XP_bar] XP gained in current level: ' .. XP_inLevel)
+	end
+			
   local percent = XP_inLevel * 100 / neededXP
-  --print('[update_XP_bar] Percent toward next level: ' .. percent)
-
+	if config.debug = true then
+           print('[update_XP_bar] Percent toward next level: ' .. percent)
+	end
+			
   SendNUIMessage({
       type = 'updateBar',
       percent = percent,
