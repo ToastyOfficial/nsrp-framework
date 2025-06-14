@@ -1,4 +1,5 @@
-resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
+fx_version 'cerulean'
+games { 'gta5' }
 
 ui_page "nui/ui.html"
 
@@ -23,9 +24,12 @@ files {
    	"nui/spawn.png",
    	"nui/spawn-hover.png",
    	"nui/responsive.css",
-	"nui/btn-left.png"
+	"nui/btn-left.png
 }
-
-client_script 'click.lua'
-client_script 'client.lua'
-server_script 'server.lua'
+client_scripts {
+  'click.lua',
+  'client.lua',
+}
+server_scripts {
+  'server.lua',
+}
