@@ -1,7 +1,7 @@
 # Dawnstar XP Framework
 > A scratch built XP babsed framework by Dawnstar 
 
-## Dependencies
+### Dependencies
 - pNotify
 - oxmysql
 - Badger_Discord_API
