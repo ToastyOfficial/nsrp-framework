@@ -22,28 +22,35 @@ function setupPlayerDB(source)
 
     local setupXP = nil
     local setupRank = nil
-    --print(targetSteam)
+      if config.debug = true then
+         print(targetSteam)
+      end 
 
     -- get player data function to get data from MySQL based on identifier above
     --name, xp, rank = getPlayerInfo(source, name, targetSteam)
 
     ---  V MOVED TO FUNCTION BELOW (getPlayerInfo) V
 
-    --print("Looking for player; steam ID: " .. targetSteam)
+      if config.debug = true then
+         print("Looking for player; steam ID: " .. targetSteam)
+      end
     MySQL.Async.fetchAll("SELECT * FROM users WHERE identifier = @steam",
     {
       ['@steam'] = targetSteam
     },
       function(result)
-          --print('[setupPlayerDB] Player search returned: ' .. json.encode(result))
+          if config.debug = true then
+             print('[setupPlayerDB] Player search returned: ' .. json.encode(result))
+          end
           data = result
 
           setupXP = data[1].rp_xp
           setupRank = data[1].rp_rank
-          -- print("Retrieved name: " ..data[1].name)
-          -- print("Retrieved XP: " ..data[1].rp_xp)
-          -- print("Retrieved Level: " .. data[1].rp_rank)
-
+          if config.debug = true then
+             print("Retrieved name: " ..data[1].name)
+             print("Retrieved XP: " ..data[1].rp_xp)
+             print("Retrieved Level: " .. data[1].rp_rank)
+          end 
 
      end)
      Wait(200) -- wait long enough for MqSQL query to complete
@@ -87,7 +94,9 @@ function setXP(target, amount, type) -- target is playerID
     end)
     Wait(200)
     local oldRank = data[1].rp_rank
-    --print("[setXP] Old Rank: " .. oldRank)
+      if config.debug = true then
+         print("[setXP] Old Rank: " .. oldRank)
+      end
 
     local data2 = MySQL.Sync.fetchAll("SELECT name FROM users WHERE identifier = @steam",
     {['@steam'] = steam},
@@ -112,18 +121,24 @@ function setXP(target, amount, type) -- target is playerID
         if tonumber(amount) < 2008000 then
 
           if Config.Ranks[rank + 1] > tonumber(amount) then
-            --print("Set rank got: Level " .. rank)
-            --print(rank)
+            if config.debug = true then
+               print("Set rank got: Level " .. rank)
+               print(rank)
+            end
             MySQL.Async.execute("UPDATE `nsrp`.`users` SET rp_rank = " .. rank .. " WHERE identifier = @steam",
             {
               ['@steam'] = targetSteam,
             },
               function()
-                --print(oldRank)
-                --print(rank)
+                if config.debug = true then
+                   print(oldRank)
+                   print(rank)
+                end
                 if tonumber(oldRank) == tonumber(rank) then
                   didLevelUp = false
-                  --print('No')
+                  if config.debug = true then
+                     print('No')
+                  end
                 else
                   didLevelUp = true
                   TriggerClientEvent('levelUpdate', -1,  name, rank, type)
@@ -188,22 +203,34 @@ function addXP(target, amount) -- add xp to plyaer using set XP and maths, targe
 
     if IsPlayerAceAllowed(target, 'supporter.xp') then
       print('Is a supporter')
-      --print("Normal amount = " .. amount)
+        if config.debug = true then
+           print("Normal amount = " .. amount)
+        end
       amount = amount*1.5
-      --print('Supporter amount = ' .. amount)
+        if config.debug = true then
+           print('Supporter amount = ' .. amount)
+        end
     else
-      --print('No supporter bonus')
+        if config.debug = true then
+           print('No supporter bonus')
+        end
     end
 
     local xp_table = MySQL.Sync.fetchAll("SELECT  rp_xp FROM users WHERE identifier = @steam",{['@steam'] = steam}, function(result)
-    --print('Fetch from table returned: ' .. json.encode(result)) xp = result[1].rp_xp
+          if config.debug = true then
+             print('Fetch from table returned: ' .. json.encode(result)) xp = result[1].rp_xp
+          end
     end)
     local currentXP = xp_table[1].rp_xp
-    --print(currentXP)
+      if config.debug = true then
+         print(currentXP)
+      end
     Wait(100)        -- have to have getPlayerXP function inform addXP of xp somehow, it's not passing it.
     local newXP = currentXP + amount
 
-    --print("New XP to set: " .. newXP)
+      if config.debug = true then
+         print("New XP to set: " .. newXP)
+      end
     if newXP > 2008000 then
       setXP(target, 2008000, 2)
     else
@@ -222,14 +249,21 @@ function remXP(target, amount) -- remove xp from plyaer using set XP and maths, 
     local newXP = nil
     local steam = getSteam(target)
 
-    --print("REM steam: " .. steam)               ---- THIS IS WHAT I WAS WORKING ON ----
+      if config.debug = true then
+         print("REM steam: " .. steam)
+      end
+      ---- THIS IS WHAT I WAS WORKING ON ----
 
     local xp_table = MySQL.Sync.fetchAll("SELECT  rp_xp FROM users WHERE identifier = @steam",{['@steam'] = steam},
     function(result)
-      --print('Fetch from table returned: ' .. json.encode(result)) xp = result[1].rp_xp
+          if config.debug = true then
+             print('Fetch from table returned: ' .. json.encode(result)) xp = result[1].rp_xp
+          end
     end)
     local currentXP = xp_table[1].rp_xp
-    --print(currentXP)
+      if config.debug = true then
+         print(currentXP)
+      end
     Wait(100) -- have to have getPlayerXP function inform addXP of xp somehow, it's not passing it.
 
     print(tonumber(currentXP))
@@ -240,7 +274,9 @@ function remXP(target, amount) -- remove xp from plyaer using set XP and maths, 
       if tonumber(currentXP) > tonumber(amount) then
         local newXP = currentXP - amount
 
-        --print("New XP to set: " .. newXP)
+          if config.debug = true then
+             print("New XP to set: " .. newXP)
+          end
 
         setXP(target, newXP, 3)
         TriggerClientEvent('xp:lossNotify', target, amount)
@@ -264,11 +300,16 @@ end, true)
 
 -- Get player steam ID
 function getSteam(target) -- target is player server ID
-  --print("[getSteam] Getting steam for ID: ".. target)
+  if config.debug = true then
+    print("[getSteam] Getting steam for ID: ".. target)
+  end
   -- get identifiers
   local identifiers = GetPlayerIdentifiers(target)
   steam = nil
-  --print("Found an identifier: " .. identifiers[1])
+
+  if config.debug = true then
+     print("Found an identifier: " .. identifiers[1])
+  end
 
   -- sort through identifiers to find steam
   for k, v in ipairs(GetPlayerIdentifiers(target)) do
@@ -278,7 +319,9 @@ function getSteam(target) -- target is player server ID
          break
       end
     end
-    --print('Found Steam ID: ' .. steam)
+  if config.debug = true then
+     print('Found Steam ID: ' .. steam)
+  end
   return steam
 end
 
@@ -295,15 +338,23 @@ end
 -- end)
 function getPlayerLevel(source, callback) -- gets level of specified player ID
   local level = nil
-  --print("^6[getPlayerLevel] Source: " .. source)
+  if config.debug = true then
+     print("^6[getPlayerLevel] Source: " .. source)
+  end
 
   local targetSteam = getSteam(source)
-  --print("[getPlayerLevel] Looking for player; steam ID: " .. targetSteam)
+  if config.debug = true then
+     print("[getPlayerLevel] Looking for player; steam ID: " .. targetSteam)
+  end
 
   local result = MySQL.Sync.fetchAll("SELECT rp_rank FROM users WHERE identifier = @steam", {['@steam'] = targetSteam})
-  --print('Fetch from table returned: ' .. json.encode(result))
+  if config.debug = true then
+     print('Fetch from table returned: ' .. json.encode(result))
+  end
   data = result
-  --print("^6[getPlayerLevel] Retrieved Level: " .. data[1].rp_rank)
+  if config.debug = true then
+     print("^6[getPlayerLevel] Retrieved Level: " .. data[1].rp_rank)
+  end
   level = data[1].rp_rank
   callback(level)
 
@@ -326,9 +377,11 @@ function getPlayerInfo(source, targetSteam) -- gets xp of specified player by st
     function(result)
         print('Fetch from table returned: ' .. json.encode(result))
         data = result
-        -- print("Retrieved name: " ..data[1].name)
-        -- print("Retrieved XP: " ..data[1].rp_xp)
-        -- print("Retrieved Level: " .. data[1].rp_rank)
+      if config.debug = true then
+         print("Retrieved name: " ..data[1].name)
+         print("Retrieved XP: " ..data[1].rp_xp)
+         print("Retrieved Level: " .. data[1].rp_rank)
+      end
         name = data[1].name
         xp = data[1].rp_xp
         rank = data[1].rp_rank
